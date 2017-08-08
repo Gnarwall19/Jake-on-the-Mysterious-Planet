@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 	public GameState currentGameState = GameState.menu;
 
+	public Canvas menuCanvas;
+	public Canvas inGameCanvas;
+	public Canvas gameOverCanvas;
 
 	void Awake() {
 		instance = this;
@@ -42,10 +45,19 @@ public class GameManager : MonoBehaviour {
 
 		if (newGameState == GameState.menu) {
 			//setup Unity scene for menu state
+			menuCanvas.enabled = true;
+			inGameCanvas.enabled = false;
+			gameOverCanvas.enabled = false;
 		} else if (newGameState == GameState.inGame) {
 			//setup Unity scene for inGame state
+			menuCanvas.enabled = false;
+			inGameCanvas.enabled = true;
+			gameOverCanvas.enabled = false;
 		} else if (newGameState == GameState.gameOver) {
 			//setup Unity scene for gameOver state
+			menuCanvas.enabled = false;
+			inGameCanvas.enabled = false;
+			gameOverCanvas.enabled = true;
 		}
 
 		currentGameState = newGameState;
